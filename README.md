@@ -7,5 +7,5 @@ Visualizer: [glava](https://github.com/eXTrimeXT/my_arch_linux/tree/main/.config
 
 
 # Preview
-![Alt Text](https://github.com/eXTrimeXT/my_arch_linux/blob/main/img/1.png) </br>
-![Alt Text](https://github.com/eXTrimeXT/my_arch_linux/blob/main/img/2.png) </br>
+![Alt Text](https://github.com/eXTrimeXT/my_arch_linux/blob/main/img/1.png) </br> </br>
+![Alt Text](https://github.com/eXTrimeXT/my_arch_linux/blob/main/img/2.png) </br> </br>
