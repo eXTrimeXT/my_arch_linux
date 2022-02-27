@@ -1,0 +1,58 @@
+# alias for ARCH*
+alias yu='sudo pacman -Syu'  # полностью обновляемся 
+alias sc='sudo pacman -Sc && yay -Sc'  # удаляем неиспользуемые пакеты, очищаем кеш
+alias install='sudo pacman -S'  # устанавливаем что-то
+alias remove='sudo pacman -R'  # удаляем что-то
+alias pacman="sudo pacman"  # лень писать "sudo" PACMAN - консольный пакетный менеджер
+alias pamac="sudo pamac"  # лень писать "sudo" PAMAC - графический пакетный менеджер
+alias systemctl="sudo systemctl"
+alias ys="yay -S"
+alias yr="yay -R"
+alias ysyu="yay -Syyuu"
+
+# for Kali Linux
+# alias google='google-chrome --no-sandbox'  # открываем гугл в Kali Linux
+alias wifite="sudo wifite"
+
+# general aliases
+alias editbash='micro ~/.bashrc'
+alias editzsh='micro ~/.zshrc'
+alias editalias='micro /home/extrime/.bash_alias' # одной командой редактируем псевдонимы, вместо NAME напишите имя пользователя!
+alias clear_ram="cd && ./clear_ram.sh"  # очистка ОЗУ
+alias chzsh="rm -rf ~/.zsh_history"
+alias chbash="rm -rf ~/.bash_history"
+alias py="python3"  # мне просто надоело каждый раз писать "python3", "py" гораздо легче :D
+alias gc="git clone"  # тоже самое только вместо "python3" меня задолбал "git clone" )
+alias g="git"
+alias n="nano"
+alias sn="sudo nano"
+alias m="micro"
+alias sm="sudo micro"
+alias cdp="cd ~/mnt/HDD/Programming/ && ls"
+
+
+# Фичи
+alias wtr='curl -H "Accept-Language: ru" wttr.in'
+
+# ВидеоОбои
+#wwset()
+#{
+#	wallset -q && wallset -V $1 && wallset -L
+#}
+
+
+# ALIAS FOR i3
+alias editi3="cd ~/.config/i3/ && micro config"
+alias editstatus="cd ~/.config/i3status && ls"
+alias editpolybar="cd ~/.config/polybar && micro config"
+alias editglava="cd ~/.config/glava && ls"
+
+# Change orientation displays
+#exec xrandr --output eDP-1 --mode 1920x1080 --pos 0x0
+#exec xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0
+# First(main) monitor a have pos(0x0), but second monitor have pos(1920x0), else: "start second mon"="end first mon"!
+#exec xrandr --output eDP-1 --mode 1920x1080 --pos 0x0
+#exec xrandr --output HDMI-1 --mode 1920x1080 --pos 1920x0
+
+alias onemon="xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 && xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0"
+alias twomon="xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 && xrandr --output HDMI-1 --mode 1920x1080 --pos 1920x0"

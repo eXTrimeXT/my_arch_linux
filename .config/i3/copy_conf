@@ -1,0 +1,236 @@
+# КЛАВИША МОДИФИКАТОР
+set $mod Mod4
+
+#АВТОЗАПУСК
+#exec --no-startup-id picom -b
+#exec --no-startup-id nitrogen
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+
+
+# АНИМАЦИИ И VSYNC
+exec compton -f --vsync drm
+
+# Изменение раскладки клавиатуры
+exec --no-startup-id setxkbmap us,ru -option 'grp:alt_shift_toggle'
+
+# Цветовая температура
+exec --no-startup-id redshift -b 1.0:0.7 -t 6500:3200 -l 45:39
+
+
+# BLUETOOTH
+# проверка
+#sudo systemctl status bluetooth.service
+# запуск
+#sudo systemctl start bluetooth.service
+# включение службы для автозапуска
+#sudo systemctl enable bluetooth.service
+
+# ГОРЯЧИЕ КЛАВИШИ
+bindsym $mod+1 exec google-chrome-stable
+bindsym $mod+2 exec konsole
+bindsym $mod+3 exec konsole
+bindsym $mod+4 exec subl
+
+
+# ПРИВЯЗКА К ВОРКСПЕЙСАМ
+#assign [class="firefox"] $ws1
+#assign [class="Blender"] $ws2
+#assign [class="Inkscape"] $ws3
+#assign [class="Pavucontrol"] $ws4
+#assign [class="Nitrogen"] $ws4
+#assign [class="Lxappearance"] $ws4
+#assign [class="Steam"] $ws9
+
+# ПРИЛОЖЕНИЯ В ФОКУСЕ
+#assign [class="firefox"] $ws1
+#assign [class="Blender"] $ws2
+#assign [class="Inkscape"] $ws3
+#assign [class="Mplayer"] $ws3
+
+# ПЛАВАЮЩИЕ ПРИЛОЖЕНИЯ
+#for_window [class="firefox"] floating enable
+#for_window [class="firefox"] move absolute position center
+#for_window [class="Steam"] floating enable
+#for_window [class="Steam"] move absolute position center
+#for_window [class="Mplayer"] floating enable
+#for_window [class="Mplayer"] move absolute position center
+
+# КНОПКИ УПРАВЛЕНИЯ ГРОМКОСТЬЮ ДЛЯ ПУЛЬСАУДИО
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# МОДИФИКАТОР ДЛЯ УПРАВЛЕНИЯ ОКНОМ МЫШЬЮ
+floating_modifier $mod
+
+# ЗАПУСК ТЕРМИНАЛА
+bindsym $mod+Return exec konsole
+
+# ЗАКРЫТЬ ОКНО
+bindsym $mod+Shift+q kill
+
+# ЗАПУСК DMENU ИЛИ ROFI
+bindsym $mod+d exec --no-startup-id rofi -theme Monokai -font "hack 16" -show run
+
+# СМЕНА ФОКУСА НА ДРУГОЕ ОКНО
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# АЛЬТЕРНАТИВНАЯ СМЕНА ФОКУСА НА ДРУГОЕ ОКНО
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# ПЕРЕМЕЩЕНИЕ ФОКУСНОГО ОКНА
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# АЛЬТЕРНАТИВНОЕ ПЕРЕМЕЩЕНИЕ ФОКУСНОГО ОКНА
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ НОВОГО ОКНА
+bindsym $mod+h split h
+
+# ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ НОВОГО ОКНА
+bindsym $mod+v split v
+
+# ФУЛЛСКРИН
+bindsym $mod+f fullscreen toggle
+
+# КОРОЧ ВЕЩЬ КОТОРАЯ МЕНЯЕТ ТИП КОНТЕЙНЕРА,
+# ЭТО КОГДА НЕСКОЛЬКО ОКОН КАК В БРАУЗЕРЕ СКЛАДЫВАЮТСЯ,
+# А ЗАГОЛОВКИ КАК ВКЛАДКИ
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# СДЕЛАТЬ ОКНО ПЛАВАЮЩИМ
+bindsym $mod+Shift+space floating toggle
+
+# ПЕРЕКЛЮЧЕНИЕ ФОКУСА С ПЛАВАЮЩИХ ОКОН НА ТАЙЛИНГ
+bindsym $mod+space focus mode_toggle
+
+# ГАПСЫ
+gaps inner 10
+gaps outer 4
+
+#ШРИФТЫ
+font pango:monospace 8
+
+# ОТКЛЮЧЕНИЕ ЗАГОЛОВКА ОКНА
+default_border pixel
+
+# РАЗМЕР РАМОК ОКНА
+for_window [tiling] border pixel 2
+
+# ОТКЛЮЧЕНИЕ РАМОК ДЛЯ ПОЛНОЭКРАННЫХ ПРИЛОЖЕНИЙ
+smart_borders on
+
+# ЦВЕТ РАМОК
+#                       Рамка   Фон   Индикатор Родительская_рамка
+client.focused			#d1d9ec #d1d9ec #011b28 #011b28
+client.focused_inactive	#011b28 #011b28 #011b28 #011b28
+client.unfocused		#011b28 #011b28 #011b28 #011b28
+client.urgent			#d1d9ec #d1d9ec #011b28 #011b28
+client.placeholder		#d1d9ec #d1d9ec #011b28 #011b28
+
+
+# ИМЕНА ВОРКСПЕЙСОВ И ИХ НОМЕРА
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# ПЕРЕКЛЮЧЕНИЕ ВОРКСПЕЙСОВ
+bindsym $mod+F1 workspace number $ws1
+bindsym $mod+F2 workspace number $ws2
+bindsym $mod+F3 workspace number $ws3
+bindsym $mod+F4 workspace number $ws4
+bindsym $mod+F5 workspace number $ws5
+bindsym $mod+F6 workspace number $ws6
+bindsym $mod+F7 workspace number $ws7
+bindsym $mod+F8 workspace number $ws8
+bindsym $mod+F9 workspace number $ws9
+bindsym $mod+F0 workspace number $ws10
+
+# ПЕРЕМЕЩЕНИЕ ОКНА НА ДРУГОЙ ВОРКСЕПАЙС
+bindsym $mod+Shift+F1 move container to workspace number $ws1
+bindsym $mod+Shift+F2 move container to workspace number $ws2
+bindsym $mod+Shift+F3 move container to workspace number $ws3
+bindsym $mod+Shift+F4 move container to workspace number $ws4
+bindsym $mod+Shift+F5 move container to workspace number $ws5
+bindsym $mod+Shift+F6 move container to workspace number $ws6
+bindsym $mod+Shift+F7 move container to workspace number $ws7
+bindsym $mod+Shift+F8 move container to workspace number $ws8
+bindsym $mod+Shift+F9 move container to workspace number $ws9
+bindsym $mod+Shift+F0 move container to workspace number $ws10
+
+# ПЕРЕЗАГРУЗИТЬ КОНФИГ
+bindsym $mod+Shift+c reload
+
+# ПЕРЕЗАГРУСКА I3 ПОСЛЕ ПРАВОК КОНФИГА С СОХРАНЕНИЕМ СЕАНСА
+bindsym $mod+Shift+r restart
+
+# ВЫХОД ИЗ I3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# ИЗМЕНЕНИЕ РАЗМЕРА ОКНА {
+        # СЛЕДУЮЩИЕ КОМБИНАЦИИ РАБОТАЮТ СРАЗУ ПОСЛЕ ВХОДА В РЕЖИМ ИЗМЕНЕНИЯ РАЗМЕРА
+mode "resize" {
+        # ВЛЕВО УМЕНЬШИТЬ РАЗМЕР ОКНА
+        # ВПРАВО УВЕЛИЧИТЬ РАЗМЕР ОКНА
+        # ВВЕРХ УМЕНЬШЕНИЕ ВЫСОТЫ ОКНА
+        # ВНИЗ УВЕЛЕЧЕНИЕ РАЗМЕРОВ ОКНА
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # ТОЖЕ САМОЕ НО СО СТРЕЛКАМИ
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # ВОЗВРАТ В НОРМАЛЬНОЕ СОСТОЯНИЕ, ESC ОТМЕНА, ENTER ПОДТВЕРЖДЕНИЕ
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# НАСТРОЙКИ I3BAR
+bar {
+	position top
+	font pango:awesome 12
+        status_command i3status --config ~/.config/i3status/rgb_status
+	colors
+	{
+		background #000000
+		statusline #ffffff
+		separator #ff0000
+
+                focused_workspace   #e1e2e6 #e1e2e6 #282a33
+                active_workspace    #373E4D #373E4D #373E4D
+                inactive_workspace  #282a33 #282a33 #e1e2e6
+                urgent_workspace    #ff0066 #ff0066 #ffffff
+                binding_mode        #ff0066 #ff0066 #ffffff
+	}
+}

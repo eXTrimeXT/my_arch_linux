@@ -1,0 +1,248 @@
+# wifi - console nmtui
+# КЛАВИША МОДИФИКАТОР
+set $mod Mod4
+
+#АВТОЗАПУСК
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b -o 0.1;
+#exec --no-startup-id wallset -I 3
+exec --no-startup-id picom --inactive-dim 0.2 --no-fading-openclose --inactive-dim-fixed --config /dev/null
+#exec --no-startup-id blueman-manager;
+exec nm-applet & ;
+exec --no-startup-id glava -d --force-mod=bars; # Визуализатор музыки
+exec --no-startup-id flameshot
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec xscreensaver &
+
+
+# Блокировка экрана
+bindsym $mod+Return exec xscreensaver-command --lock
+
+# АНИМАЦИИ И VSYNC
+#exec compton -f --vsync drm
+
+# Изменение раскладки клавиатуры
+exec --no-startup-id setxkbmap us,ru -option 'grp:alt_shift_toggle'
+
+# Цветовая температура
+#exec --no-startup-id redshift -b 1.0:0.7 -t 6500:3200 -l 45:39
+
+# Screenshot
+bindsym Print exec flameshot gui
+# Launch options flameshot
+bindsym $mod+F12 exec flameshot config
+
+
+# Яркость экрана
+# sudo chmod +s /usr/bin/light
+bindsym XF86MonBrightnessUp exec light -A 10    # +10 к яркости
+bindsym XF86MonBrightnessDown exec light -U 10  # -10 к яркости
+
+
+# BLUETOOTH
+# проверка
+# sudo systemctl status bluetooth.service
+# запуск
+# sudo systemctl start bluetooth.service
+# включение службы для автозапуска
+# sudo systemctl enable bluetooth.service
+
+# ГОРЯЧИЕ КЛАВИШИ
+bindsym $mod+1 exec google-chrome-stable
+bindsym $mod+2 exec thunar
+bindsym $mod+3 exec konsole
+bindsym $mod+4 exec subl
+
+
+# При запуске приложение будет открываться на $ws
+assign [class="Google-chrome"] $ws2
+
+# ПРИЛОЖЕНИЯ В ФОКУСЕ
+#assign [class="glava"] $ws1
+
+# ПЛАВАЮЩИЕ ПРИЛОЖЕНИЯ
+#for_window [class="Glava"] floating enable
+#for_window [class="Glava"] move absolute position center
+
+
+# КНОПКИ УПРАВЛЕНИЯ ГРОМКОСТЬЮ ДЛЯ ПУЛЬСАУДИО
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+#exec --no-startup-id paramixer --set-limit 100
+
+
+# МОДИФИКАТОР ДЛЯ УПРАВЛЕНИЯ ОКНОМ МЫШЬЮ
+floating_modifier $mod
+
+# ЗАКРЫТЬ ОКНО
+bindsym $mod+Shift+q kill
+
+# ЗАПУСК ROFI
+bindsym $mod+d exec --no-startup-id rofi -theme Monokai -font "hack 16" -show run
+
+# СМЕНА ФОКУСА НА ДРУГОЕ ОКНО
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# АЛЬТЕРНАТИВНАЯ СМЕНА ФОКУСА НА ДРУГОЕ ОКНО
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# ПЕРЕМЕЩЕНИЕ ФОКУСНОГО ОКНА
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# АЛЬТЕРНАТИВНОЕ ПЕРЕМЕЩЕНИЕ ФОКУСНОГО ОКНА
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ НОВОГО ОКНА
+bindsym $mod+h split h
+
+# ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ НОВОГО ОКНА
+bindsym $mod+v split v
+
+# ФУЛЛСКРИН
+bindsym $mod+f fullscreen toggle
+
+# КОРОЧ ВЕЩЬ КОТОРАЯ МЕНЯЕТ ТИП КОНТЕЙНЕРА,
+# ЭТО КОГДА НЕСКОЛЬКО ОКОН КАК В БРАУЗЕРЕ СКЛАДЫВАЮТСЯ,
+# А ЗАГОЛОВКИ КАК ВКЛАДКИ
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# СДЕЛАТЬ ОКНО ПЛАВАЮЩИМ
+bindsym $mod+Shift+space floating toggle
+
+# ПЕРЕКЛЮЧЕНИЕ ФОКУСА С ПЛАВАЮЩИХ ОКОН НА ТАЙЛИНГ
+bindsym $mod+space focus mode_toggle
+
+# ГАПСЫ
+gaps inner 10
+gaps outer 5
+
+
+# ШРИФТЫ
+font pango:monospace 8
+
+# ОТКЛЮЧЕНИЕ ЗАГОЛОВКА ОКНА
+default_border pixel
+
+# РАЗМЕР РАМОК ОКНА
+for_window [tiling] border pixel 1
+
+# ОТКЛЮЧЕНИЕ РАМОК ДЛЯ ПОЛНОЭКРАННЫХ ПРИЛОЖЕНИЙ
+smart_borders on
+
+# ЦВЕТ РАМОК
+#                       	Рамка   Фон   Индикатор Родительская_рамка
+client.focused			    #ff0000 #ff0000 #ff0000 #ff0000
+client.unfocused            #00ffff #00ffff #00ffff #00ffff
+client.focused_inactive		#00ffff #00ffff #00ffff #00ffff
+client.urgent				#ffffff #ffffff #ffffff #ffffff
+client.placeholder			#ffffff #ffffff #ffffff #ffffff
+
+
+# ИМЕНА ВОРКСПЕЙСОВ И ИХ НОМЕРА
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# ПЕРЕКЛЮЧЕНИЕ ВОРКСПЕЙСОВ
+bindsym $mod+F1 workspace number $ws1
+bindsym $mod+F2 workspace number $ws2
+bindsym $mod+F3 workspace number $ws3
+bindsym $mod+F4 workspace number $ws4
+bindsym $mod+F5 workspace number $ws5
+bindsym $mod+F6 workspace number $ws6
+bindsym $mod+F7 workspace number $ws7
+bindsym $mod+F8 workspace number $ws8
+bindsym $mod+F9 workspace number $ws9
+bindsym $mod+F10 workspace number $ws10
+
+# ПЕРЕМЕЩЕНИЕ ОКНА НА ДРУГОЙ ВОРКСЕПАЙС
+bindsym $mod+Shift+F1 move container to workspace number $ws1
+bindsym $mod+Shift+F2 move container to workspace number $ws2
+bindsym $mod+Shift+F3 move container to workspace number $ws3
+bindsym $mod+Shift+F4 move container to workspace number $ws4
+bindsym $mod+Shift+F5 move container to workspace number $ws5
+bindsym $mod+Shift+F6 move container to workspace number $ws6
+bindsym $mod+Shift+F7 move container to workspace number $ws7
+bindsym $mod+Shift+F8 move container to workspace number $ws8
+bindsym $mod+Shift+F9 move container to workspace number $ws9
+bindsym $mod+Shift+F10 move container to workspace number $ws10
+
+# ПЕРЕЗАГРУЗИТЬ КОНФИГ
+bindsym $mod+Shift+c reload
+
+# ПЕРЕЗАГРУСКА I3 ПОСЛЕ ПРАВОК КОНФИГА С СОХРАНЕНИЕМ СЕАНСА
+bindsym $mod+Shift+r restart
+
+# ВЫХОД ИЗ I3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Вы действительно хотите выйти из сессии?' -B 'ДА' 'i3-msg exit'"
+
+# ИЗМЕНЕНИЕ РАЗМЕРА ОКНА {
+        # СЛЕДУЮЩИЕ КОМБИНАЦИИ РАБОТАЮТ СРАЗУ ПОСЛЕ ВХОДА В РЕЖИМ ИЗМЕНЕНИЯ РАЗМЕРА
+mode "resize" {
+        # ВЛЕВО УМЕНЬШИТЬ РАЗМЕР ОКНА
+        # ВПРАВО УВЕЛИЧИТЬ РАЗМЕР ОКНА
+        # ВВЕРХ УМЕНЬШЕНИЕ ВЫСОТЫ ОКНА
+        # ВНИЗ УВЕЛЕЧЕНИЕ РАЗМЕРОВ ОКНА
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # ТОЖЕ САМОЕ НО СО СТРЕЛКАМИ
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # ВОЗВРАТ В НОРМАЛЬНОЕ СОСТОЯНИЕ, ESC ОТМЕНА, ENTER ПОДТВЕРЖДЕНИЕ
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# НАСТРОЙКИ I3BAR
+# bar {
+	# position top
+	# # tray_padding 10
+	# font pango:awesome 12
+        # status_command i3status --config ~/.config/i3status/rgb_status
+	# colors
+	# {
+		# background #000000
+		# statusline #ffffff
+		# separator #ff0000
+# 
+				# # вид_окна          рамка   фон     цифра
+                # focused_workspace   #ffffff #ffffff #000000
+                # active_workspace    #ffffff #ffffff #000000
+                # inactive_workspace  #ffffff #000000 #ffffff
+                # 
+				# urgent_workspace    #ff00ff #ff00ff #000000
+                # binding_mode        #0000ff #0000ff #000000
+	# }
+# }
